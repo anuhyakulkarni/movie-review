@@ -1,0 +1,32 @@
+INTRODUCTION ABOUT THE PROJECT : The dataset is a sentiment analysis classification for a movie review website .movies are valued as 'pos' and 'neg' under the tag column.
+The notebook gives a solution to identify positive and negative reviews for a movie of a large data(set) with highest possible accuracy .
+the dataset has a lot of spelling mistakes and usage of sms language which might make it difficult for 
+
+PROCEDURE/APPROACH : (LEMMATIZATION AND STOP WORDS,LABEL ENCODED WORD EMBEDDINGS)
+
+*the dataset has two notable columns. text and tag .text has textual reviews and tag has value pos and neg . The other columns are not used in the model 
+*the tag column's pos and neg values are replaced with 1 and 0 
+*some visualisations are made to understand the dataset better and it is observed that the data is evenly distributed between pos and neg(0 and 1)
+
+*Create a function clean_word that replaces punctuation with blank spaces, and appends only numbers and alphabets to 'new', excluding stopwords, and perform lemmatization and append the words to'new'.
+*add all the columns to 'text' and drop the unnecessary columns
+*find the largest sentence and pad rest of the sentences with zeros to match the largest sentence's length
+*feed it into a vector which can be trained and tested for a model
+
+* the vector is fed into the the model split into 80:20 train and test .
+*the train and test dataset is split into batches with tensor slices and well shuffled 
+* the  model is created using sequential , embedding,global average pooling , relu and sigmoid for activation and output layers.
+*the model is compiled using adam and cross entropy 
+*the model is fit, for five epochs 
+* accuracy and error plots are drawn to visualise the model fitting
+*confusion matrix is calculated and a heatmap is also made for concluding the success/failure of the model
+
+CONCLUSION : The model gives 80.3 % and 68.89% train and test accuracy when trained on 80% train  n 20% testing data.
+Out of 6331 negative values,i it predicts 4641 as negative and 1690 as positive i.e our model gives 26.69% false-positive values i.e 26.69% of the time when the answer was negative the model predicted positive.
+out of 6613 positive vaules it predicted 4276 as positive and 2337 as negative i.e our model gives 35.339% true-negative value i.e 35.339% of the time when the answer was positive our model predicted negative 
+  
+the model is a case of over fitting and couldn't be changed after adding layers , increasing the epochs. 
+the main reason was observed that the dataset had a lot of spelling mistakes and short sms language
+ which could not be lemmatized and contributed to unidentification of words in the vocab.
+the accuracy could have been increased if the short forms and spellings were corrected through raw/manual code.
+
